@@ -1,0 +1,54 @@
+CREATE SCHEMA `db_digital-card` ;
+
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`tb_pessoa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`tb_pessoa` (
+  `id_pessoa` INT NOT NULL AUTO_INCREMENT,
+  `nome_pessoa` VARCHAR(50) NOT NULL,
+  `email_pessoa` VARCHAR(50) NOT NULL,
+  `senha_pessoa` VARCHAR(30) NOT NULL,
+  `sexo_pessoa` CHAR(1) NULL,
+  `biografia_pessoa` LONGTEXT NULL,
+  `profissao_pessoa` VARCHAR(50) NULL,
+  PRIMARY KEY (`id_pessoa`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`tb_contato`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`tb_contato` (
+  `id_contato` INT NOT NULL AUTO_INCREMENT,
+  `tipo_contato` VARCHAR(20) NULL,
+  `link_contato` VARCHAR(50) NULL,
+  `id_pessoa_contato` INT NOT NULL,
+  PRIMARY KEY (`id_contato`),
+  INDEX `fk_tb_contato_tb_pessoa_idx` (`id_pessoa_contato` ASC) VISIBLE,
+  CONSTRAINT `fk_tb_contato_tb_pessoa`
+    FOREIGN KEY (`id_pessoa_contato`)
+    REFERENCES `mydb`.`tb_pessoa` (`id_pessoa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
