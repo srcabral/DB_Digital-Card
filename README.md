@@ -1,5 +1,7 @@
 # Digital Card
 
+[![license](https://img.shields.io/github/license/srcabral/Movie-Review?color=success)](https://img.shields.io/github/license/srcabral/Movie-Review?color=success)
+
 Link para a landing page do projeto: https://bussoladigital.com.br/card/
 
 # Sobre o projeto
